@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Numair - Data Science & AI Portfolio</title>
+    <meta name="description" content="Professional portfolio of Muhammad Numair, BS Mathematics student at Namal University, specializing in Python, Machine Learning, and Data Visualization. Explore my project on Traffic Signal Detection using CNN.">
+    <meta name="keywords" content="Muhammad Numair, Machine Learning, Python, Namal University, Portfolio, AI, CNN, Data Visualization">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #121212;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation - Glassmorphism */
+        .navbar {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #5b9bd5;
+            letter-spacing: -0.5px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #357abd;
+            text-shadow: 0 0 10px rgba(91, 155, 213, 0.7);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #5b9bd5;
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(91, 155, 213, 0.7);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #e0e0e0;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section with Interactive Particles */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            margin-top: 80px;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
+            color: #f0f0f0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #5b9bd5, #357abd);
+            color: #ffffff;
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections with Wave Animation */
+        section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1e1e1e 0%, #282828 100%);
+            background-size: 100% 200%;
+            animation: waveAnimation 10s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes waveAnimation {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            color: #5b9bd5;
+            position: relative;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #5b9bd5, #357abd);
+            margin: 1rem auto 0;
+        }
+
+        /* About Section - Parallax Timeline */
+        .about-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .about-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(#5b9bd5, #357abd);
+            transform: translateX(-50%);
+        }
+
+        .about-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .about-item img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            position: relative;
+            animation: pulseBorder 2s infinite;
+        }
+
+        @keyframes pulseBorder {
+            0% { box-shadow: 0 0 0 0 rgba(91, 155, 213, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(91, 155, 213, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(91, 155, 213, 0); }
+        }
+
+        .about-item .about-text {
+            background: #282828;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            width: 50%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .about-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .about-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #5b9bd5;
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* Skills Section - Gradient Progress Bars */
+        .skills-grid {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            justify-items: center;
+        }
+
+        .skill-item {
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .skill-item i {
+            font-size: 3rem;
+            color: #5b9bd5;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover i {
+            transform: scale(1.2);
+        }
+
+        .skill-item h3 {
+            color: #5b9bd5;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .skill-item p {
+            color: #e0e0e0;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+        }
+
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke: #282828;
+            stroke-width: 10;
+        }
+
+        .progress-circle .progress {
+            stroke: url(#grad1);
+            stroke-width: 10;
+            stroke-dasharray: 314;
+            stroke-dashoffset: 314;
+            transition: stroke-dashoffset 1.5s ease;
+        }
+
+        .skill-item.visible .progress {
+            stroke-dashoffset: 50;
+        }
+
+        .progress-circle span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #5b9bd5;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            background: #282828;
+            color: #e0e0e0;
+            padding: 10px;
+            border-radius: 10px;
+            position: absolute;
+            z-index: 10;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-item:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Projects Section - 3D Tilt with Shine */
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .project-card {
+            background: #282828;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            transform: translate(100%, 100%) rotate(45deg);
+        }
+
+        .project-card img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .project-card h3 {
+            color: #5b9bd5;
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .project-card p {
+            color: #e0e0e0;
+        }
+
+        .project-link {
+            color: #5b9bd5;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #357abd;
+        }
+
+        /* Modal for Project Details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #282828;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content h3 {
+            color: #5b9bd5;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #5b9bd5;
+        }
+
+        /* Education Section - Animated Timeline */
+        .education-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(#5b9bd5, #357abd);
+            transform: translateX(-50%);
+            animation: growLine 2s ease forwards;
+        }
+
+        @keyframes growLine {
+            to { height: 100%; }
+        }
+
+        .education-item {
+            background: #282828;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            width: 45%;
+            margin-bottom: 2rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: scale(1.05);
+        }
+
+        .education-item h3 {
+            color: #5b9bd5;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .education-item p {
+            color: #e0e0e0;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #5b9bd5;
+            border-radius: 50%;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .education-item:nth-child(even) {
+            margin-left: auto;
+        }
+
+        .education-item:nth-child(even)::before {
+            left: auto;
+            right: -50px;
+        }
+
+        /* Contact Section - Animated Icons */
+        .contact-grid {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .contact-item {
+            background: #282828;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .contact-item i {
+            font-size: 3rem;
+            color: #5b9bd5;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .contact-item h3 {
+            color: #5b9bd5;
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .contact-item a {
+            color: #5b9bd5;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #357abd;
+        }
+
+        .copy-button {
+            background: none;
+            border: none;
+            color: #5b9bd5;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .copy-button:hover {
+            color: #357abd;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #282828;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #hero {
+                height: 80vh;
+                padding: 140px 20px 80px;
+            }
+
+            .hero-content h2 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.3rem;
+            }
+
+            .about-timeline::before {
+                left: 20px;
+            }
+
+            .about-item {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .about-item .about-text {
+                width: 100%;
+            }
+
+            .about-item::before {
+                left: 16px;
+            }
+
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-timeline::before {
+                left: 20px;
+            }
+
+            .education-item {
+                width: 100%;
+            }
+
+            .education-item::before {
+                left: 16px;
+            }
+
+            .education-item:nth-child(even) {
+                margin-left: 0;
+            }
+
+            .education-item:nth-child(even)::before {
+                right: auto;
+                left: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">Muhammad Numair</h1>
+                <ul class="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h2>Empowering Innovation with Data & AI</h2>
+            <p class="typing-text"></p>
+            <a href="#projects" class="cta-button">Discover My Work</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-timeline">
+                <div class="about-item">
+                    <img src="/storage/emulated/O/Download/compressed_tinyjpg_images/compressed_images/your-photo.jpg" alt="Muhammad Numair">
+                    <div class="about-text">
+                        <p>Hello, I'm Muhammad Numair, a 7th-semester BS Mathematics student at Namal University Mianwali. With a strong foundation in mathematics and a passion for artificial intelligence, I specialize in Machine Learning and Data Visualization. My mission is to develop innovative solutions for real-world challenges in autonomous systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>My Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="progress-circle">
+                        <svg>
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#5b9bd5;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#357abd;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="60" cy="60" r="50"></circle>
+                            <circle class="progress" cx="60" cy="60" r="50"></circle>
+                        </svg>
+                        <span>90%</span>
+                    </div>
+                    <i class="fas fa-code"></i>
+                    <h3>Python</h3>
+                    <p>Scripting, data manipulation, NumPy, Pandas, Scikit-learn.</p>
+                    <div class="tooltip">Expert in Python for data analysis and modeling.</div>
+                </div>
+                <div class="skill-item">
+                    <div class="progress-circle">
+                        <svg>
+                            <circle cx="60" cy="60" r="50"></circle>
+                            <circle class="progress" cx="60" cy="60" r="50"></circle>
+                        </svg>
+                        <span>85%</span>
+                    </div>
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                    <p>TensorFlow, Keras, supervised/unsupervised learning.</p>
+                    <div class="tooltip">Building and deploying ML models.</div>
+                </div>
+                <div class="skill-item">
+                    <div class="progress-circle">
+                        <svg>
+                            <circle cx="60" cy="60" r="50"></circle>
+                            <circle class="progress" cx="60" cy="60" r="50"></circle>
+                        </svg>
+                        <span>80%</span>
+                    </div>
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Data Visualization</h3>
+                    <p>Matplotlib, Seaborn, Tableau, Plotly.</p>
+                    <div class="tooltip">Crafting interactive data visuals.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-project-id="1">
+                    <img src="traffic-signal-screenshot.jpg" alt="Traffic Signal Detection Project">
+                    <h3>Traffic Signal Detection</h3>
+                    <p>A CNN-based system for real-time detection and classification of traffic signals, enhancing safety in autonomous vehicles. Built with Python, TensorFlow, and OpenCV.</p>
+                    <a href="#" class="project-link">View Details / GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="project-modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <img id="modal-img" src="" alt="Project Image">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+                <a id="modal-link" href="#" class="project-link">View Details / GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <h3>Matriculation</h3>
+                    <p>Islamia Public Secondary School Chakrala | Completed: 2018</p>
+                    <p>Completed secondary education with a strong foundation in mathematics and sciences, achieving excellent grades.</p>
+                </div>
+                <div class="education-item">
+                    <h3>Intermediate</h3>
+                    <p>Government Higher Secondary School Danda Shah Bilawal | Completed: 2020</p>
+                    <p>Pursued pre-engineering with a focus on mathematics and physics, preparing for advanced studies in computational fields.</p>
+                </div>
+                <div class="education-item">
+                    <h3>BS Mathematics</h3>
+                    <p>Namal University Mianwali | 7th Semester | Expected Graduation: 2026</p>
+                    <p>Specializing in advanced mathematical modeling and computational methods, with applications in machine learning and data analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:bsmth22f14@namal.edu.pk">bsmth22f14@namal.edu.pk</a></p>
+                    <button class="copy-button" data-email="bsmth22f14@namal.edu.pk">Copy Email</button>
+                    <p><a href="mailto:mnumair559@gmail.com">mnumair559@gmail.com</a></p>
+                    <button class="copy-button" data-email="mnumair559@gmail.com">Copy Email</button>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/muhammad-numair-b458a32b8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">Connect on LinkedIn</a></p>
+                </div>
+                <!-- Add GitHub if available -->
+                <!-- <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p><a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Muhammad Numair. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Smooth scrolling for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+
+            // Scroll-triggered animations with staggered delays
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.about-timeline, .skill-item, .project-card, .education-item, .contact-item').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Typing Effect for Hero Subtitle
+            const typingText = document.querySelector('.typing-text');
+            const phrases = [
+                'Transforming complex challenges into actionable insights.',
+                'Building AI-driven solutions for real-world problems.',
+                'Specializing in Machine Learning and Data Visualization.'
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const currentPhrase = phrases[phraseIndex];
+                if (isDeleting) {
+                    typingText.textContent = currentPhrase.substring(0, charIndex--);
+                    if (charIndex < 0) {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                    }
+                } else {
+                    typingText.textContent = currentPhrase.substring(0, charIndex++);
+                    if (charIndex > currentPhrase.length) {
+                        isDeleting = true;
+                        setTimeout(type, 1500);
+                        return;
+                    }
+                }
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+
+            type();
+
+            // Particle Animation with Color Transition
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particlesArray = [];
+            const numberOfParticles = 100;
+            let mouse = { x: null, y: null, radius: 100 };
+            let hue = 0;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 5 + 1;
+                    this.baseX = this.x;
+                    this.baseY = this.y;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                    this.hue = hue;
+                }
+
+                update() {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * 2;
+                    let directionY = forceDirectionY * force * 2;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) {
+                            let dx = this.x - this.baseX;
+                            this.x -= dx / 20;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dy = this.y - this.baseY;
+                            this.y -= dy / 20;
+                        }
+                    }
+
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.size > 0.2) this.size -= 0.01;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+
+                draw() {
+                    ctx.fillStyle = `hsl(${this.hue}, 70%, 50%)`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particlesArray = [];
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particlesArray.push(new Particle());
+                }
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                hue += 1;
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].hue = (hue + i * 10) % 360;
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                    if (particlesArray[i].size <= 0.2) {
+                        particlesArray.splice(i, 1);
+                        particlesArray.push(new Particle());
+                        i--;
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+
+            initParticles();
+            animateParticles();
+
+            window.addEventListener('mousemove', function(event) {
+                mouse.x = event.x;
+                mouse.y = event.y;
+            });
+
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+            });
+
+            // Initialize Vanilla Tilt for Project Cards
+            VanillaTilt.init(document.querySelectorAll('.project-card'), {
+                max: 10,
+                speed: 400,
+                perspective: 1000
+            });
+
+            // Project Modal Functionality
+            const modal = document.getElementById('project-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalLink = document.getElementById('modal-link');
+            const closeModal = document.querySelector('.modal-close');
+
+            const projects = [
+                {
+                    id: '1',
+                    img: 'traffic-signal-screenshot.jpg',
+                    title: 'Traffic Signal Detection',
+                    description: 'A CNN-based system for real-time detection and classification of traffic signals, enhancing safety in autonomous vehicles. Built with Python, TensorFlow, and OpenCV.',
+                    link: '#'
+                }
+            ];
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const projectId = this.getAttribute('data-project-id');
+                    const project = projects.find(p => p.id === projectId);
+                    modalImg.src = project.img;
+                    modalTitle.textContent = project.title;
+                    modalDescription.textContent = project.description;
+                    modalLink.href = project.link;
+                    modal.style.display = 'flex';
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Copy to Clipboard for Email
+            document.querySelectorAll('.copy-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const email = this.getAttribute('data-email');
+                    navigator.clipboard.writeText(email).then(() => {
+                        alert('Email copied to clipboard: ' + email);
+                    });
+                });
+            });
+
+            // Parallax Effect for About Section
+            window.addEventListener('scroll', function() {
+                const aboutItems = document.querySelectorAll('.about-item');
+                aboutItems.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    const offset = window.innerHeight - rect.top;
+                    if (offset > 0 && rect.bottom > 0) {
+                        item.style.transform = `translateY(${offset * -0.1}px)`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
